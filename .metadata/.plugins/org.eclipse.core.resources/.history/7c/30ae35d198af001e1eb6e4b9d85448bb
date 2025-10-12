@@ -1,0 +1,62 @@
+package StepDefinitions;
+
+import java.util.concurrent.TimeUnit;
+
+//import org.junit.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.*;
+
+import io.cucumber.java.*;
+import io.cucumber.java.en.*;
+
+public class login {
+	WebDriver driver=null;
+	String baseUrl="https://www.amazon.in/";
+	
+	
+	@SuppressWarnings("deprecation")
+	@Before
+	public void browser_setup() {
+		System.getProperty("webdriver.chrome.driver", "C:/Users/91979/eclipse-workspace/CucumberjAVA/src/test/resources/driver/chrome.exe");
+	    driver =new ChromeDriver();
+	    System.out.print("Browser launched");
+	    driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+	    driver.manage().window().maximize();
+//	    public static String baseUrl="https://www.amazon.in/";
+	}
+	@After
+	public void browser_close(){
+		System.out.print("Close the browser");
+		driver.close();
+	}
+	@Given("I launch the test url")
+	public void i_launch_the_test_url() {
+		browser_setup();
+	    System.out.println("Base url is "+baseUrl);
+		driver.navigate().to(baseUrl);
+	    
+	}
+	@Given("^I enter the login details$")
+	public void invalid_login() {
+	    // Write code here that turns the phrase above into concrete actions
+	    System.out.print("Entering the deatails for login");
+	    WebElement signin_hover=driver.findElement(By.xpath("//span[text()='Hello, sign in']"));
+	    Actions hover=new Actions(driver);
+	    hover.moveToElement(signin_hover);
+	    driver.switchTo().parentFrame();
+	    WebElement Signin=driver.findElement(By.xpath("(//span[text()='Sign in']/parent::a[@href])[1]"));
+	    String href=Signin.getAttribute("href");
+	    System.out.println("Href is "+href);
+	    driver.get(href);
+	    WebElement mob=driver.findElement(By.xpath("(//label[contains(text(),'Email or mobile phone number')]/following::input)[1]"));
+	    mob.sendKeys("3213213210");
+	    driver.findElement(By.xpath("//input[@id='continue']")).click();
+	    System.out.println("Clicked login");
+	    String invalid=driver.findElement(By.xpath("//h4[text()='Incorrect phone number']")).getText();
+	    System.out.println("Invalid data "+invalid);
+	    Assert.assertEquals(invalid,"Incorrect phone number");
+	}
+
+}

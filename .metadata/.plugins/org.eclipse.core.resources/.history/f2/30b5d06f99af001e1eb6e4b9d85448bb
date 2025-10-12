@@ -1,0 +1,31 @@
+package StepDefinitions;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.cucumber.java.After;
+import io.cucumber.java.*;
+
+public class hooks {
+	WebDriver driver=null;
+	String baseUrl="https://www.amazon.in/";
+	
+	@Before
+	public void browser_setup() {
+		
+		System.getProperty("webdriver.chrome.driver", "C:/Users/91979/eclipse-workspace/CucumberjAVA/src/test/resources/driver/chrome.exe");
+	    driver =new ChromeDriver();
+	    System.out.print("Browser launched");
+	    driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+	    driver.manage().window().maximize();
+//	    public static String baseUrl="https://www.amazon.in/";
+	}
+	@After
+	public void browser_close(){
+		System.out.print("Close the browser");
+		driver.close();
+	}
+
+}
