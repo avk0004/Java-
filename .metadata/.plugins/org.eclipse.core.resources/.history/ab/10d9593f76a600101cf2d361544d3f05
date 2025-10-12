@@ -1,0 +1,23 @@
+package p1;
+import java.util.*;
+public class Squarefree {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		int n = sc.nextInt();
+		int count =0;
+		for(int i=1;i<n;i++) {
+			boolean c= false;
+			for(int j=i;j<n;j++) {
+				if(n%j ==0) {
+					if(j)
+					c = true;
+			}
+			if( c==true) {
+				++count;
+			}
+		}
+	}
+		System.out.println(count);
+
+	}
+}
