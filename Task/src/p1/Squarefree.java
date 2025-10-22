@@ -6,21 +6,21 @@ public class Squarefree {
 		Scanner sc = new Scanner (System.in);
 		int n = sc.nextInt();
 		int count =0;
-		for(int i=1;i<2;i++) {
-			for(int j=1;j<n;j++) {
-				if(n%j ==0) {
-					if(n%(Math.round(Math.sqrt(j))) != 0) {
-						System.out.println(j);
-						++count;
-
+		for(int i=2;i<=n;i++) {
+			if(n%i ==0) {
+				boolean found =true;
+				for(int j =2; j*j<=i;j++) {
+					if(i % (j*j) ==0) {
+						found = false;
+						break;
 					}
-					else {
-					}
-				}	
+				}
+				if(found) {
+					System.out.println(i);
+					++count;
+				}
+			}
 		}
-			System.out.println();
-
-	}
-		System.out.println(count);
+		System.out.print(count);
 	}
 }
