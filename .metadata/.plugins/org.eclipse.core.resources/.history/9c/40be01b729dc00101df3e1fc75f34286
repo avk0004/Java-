@@ -1,0 +1,53 @@
+package mini;
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MiniDAo mini = new MiniDAo();
+		Scanner sc = new Scanner(System.in);
+	
+		System.out.println("6 test case");
+		System.out.println("1 test case add");
+		System.out.println("2 test case show");
+		System.out.println("3 test case update");
+		System.out.println("4 test case remove");
+		System.out.println("5 test case clear");
+		System.out.println("6 test case search");
+		System.out.println("enter any one test case");
+
+		int n = sc.nextInt();
+		boolean f = true;
+		while(f) {
+			switch (n) {
+			case 1:
+				
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+			case 6:
+				
+				break;
+			case 7:
+				
+				f= false;
+				return f;
+			default:
+				break;
+			}
+		}
+
+		sc.close();
+	}
+
+}

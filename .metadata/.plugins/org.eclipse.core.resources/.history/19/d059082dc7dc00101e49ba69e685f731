@@ -1,0 +1,9 @@
+package mini;
+
+public class GetSetAdmin {
+
+	public GetSetAdmin() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

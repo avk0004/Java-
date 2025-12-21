@@ -1,0 +1,47 @@
+package mini;
+import java.util.*;
+public class AdminDAO {
+	List<GetSet> list = new ArrayList<>();
+	List<GetSetAdmin> Admin = new ArrayList<>();
+	MiniDAo mini;
+    public AdminDAO(MiniDAo mini) {
+        this.mini = mini;
+    }
+  
+	public List<GetSetAdmin> Available(Float availableQ, Float mRPrice , String PName) {
+		Admin.add(new GetSetAdmin( availableQ, mRPrice,PName));
+		return Admin;
+	}
+	public List<GetsetAdmin> getAdminList(){
+		this.Admin = admin;
+		return Admin;
+	}
+	public void AdminShow() {
+		for(GetSetAdmin admin:Admin) {
+			System.out.println("Product Name"+admin.PName+ "Available Quantity"+ admin.AvailableQ+
+					"Price"+admin.MRPrice);
+		}
+	}
+	public void RemainQ() {
+		 for (int i = 0; i < Admin.size(); i++) {
+		        GetSetAdmin ga = Admin.get(i);
+			for(GetSet s:mini.list) {
+				if(ga.PName.equals(s.getProducts_Name())) {
+					float r = ga.AvailableQ - s.getQuantity();
+					Admin.set(
+		                    i,
+		                    new GetSetAdmin(ga.getMRPrice(), r, ga.getPName())
+		                );
+				}
+				
+			}
+			
+		}
+		 for (GetSetAdmin a : Admin) {
+			    System.out.println(a.getAvailableQ());
+			}
+
+	}
+	
+
+}

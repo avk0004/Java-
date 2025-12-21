@@ -1,0 +1,107 @@
+package mini;
+import java.util.*;
+
+public class MiniDAo {
+
+    private List<GetSet> cart = new ArrayList<>();
+    private List<GetSetAdmin> admins;
+    private int count = 1;
+
+    public MiniDAo(AdminDAO adminDAO) {
+        this.admins = adminDAO.getAdminList();
+    }
+
+    // ADD PRODUCT
+    public boolean addProduct(String name, float qty) {
+
+        for (GetSetAdmin a : admins) {
+            if (a.getPName().equalsIgnoreCase(name)) {
+
+                if (a.getAvailableQ() < qty) {
+                    System.out.println("Not enough stock");
+                    return false;
+                }
+
+                float total = a.getMRPrice() * qty;
+                cart.add(new GetSet(count++, name, a.getMRPrice(), qty, total));
+                a.setAvailableQ(a.getAvailableQ() - qty);
+                return true;
+            }
+        }
+
+        System.out.println("Product not found");
+        return false;
+    }
+
+    // UPDATE QUANTITY
+    public boolean update(String productName, float newQty) {
+
+        for (GetSet item : cart) {
+            if (item.getProducts_Name() == productName) {
+
+                for (GetSetAdmin a : admins) {
+                    if (a.getPName().equalsIgnoreCase(item.getProducts_Name())) {
+
+                        float diff = newQty - item.getQuantity();
+
+                        if (diff > 0 && a.getAvailableQ() < diff) {
+                            System.out.println("Not enough stock");
+                            return false;
+                        }
+
+                        a.setAvailableQ(a.getAvailableQ() - diff);
+                        item.setQuantity(newQty);
+                        item.setTotal(item.getPrice() * newQty);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        System.out.println("Item not found");
+        return false;
+    }
+
+    // REMOVE ITEM
+    public boolean remove(int id) {
+
+        Iterator<GetSet> it = cart.iterator();
+
+        while (it.hasNext()) {
+            GetSet item = it.next();
+
+            if (item.getCount() == id) {
+
+                for (GetSetAdmin a : admins) {
+                    if (a.getPName().equalsIgnoreCase(item.getProducts_Name())) {
+                        a.setAvailableQ(a.getAvailableQ() + item.getQuantity());
+                        break;
+                    }
+                }
+
+                it.remove();
+                return true;
+            }
+        }
+
+        System.out.println("Item not found");
+        return false;
+    }
+
+    public void showCart() {
+        for (GetSet g : cart) {
+            System.out.println(g);
+        }
+    }
+
+    public float grandTotal() {
+        float total = 0;
+        for (GetSet g : cart) {
+            total += g.getTotal();
+        }
+        return total;
+    }
+    public void Delete() {
+    	cart.clear();
+    }
+}

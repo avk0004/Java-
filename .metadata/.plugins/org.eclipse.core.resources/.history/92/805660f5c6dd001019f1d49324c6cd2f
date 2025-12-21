@@ -1,0 +1,6 @@
+package mini;
+import java.util.*;
+public class AdminDAO {
+	private List<GetSetAdmin> AdminAccess;
+
+}

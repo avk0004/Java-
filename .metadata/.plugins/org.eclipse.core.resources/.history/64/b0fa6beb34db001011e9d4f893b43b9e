@@ -1,0 +1,9 @@
+package mini;
+
+public class GetSet {
+
+	public GetSet() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

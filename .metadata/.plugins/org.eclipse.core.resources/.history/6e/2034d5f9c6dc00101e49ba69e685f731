@@ -1,0 +1,33 @@
+package mini;
+
+public class Products {
+	protected float AvailableQ;
+	protected float MRPrice;
+	protected String PName;
+	
+	public Products(float availableQ, float mRPrice, String pName) {
+		this.AvailableQ = availableQ;
+		this.MRPrice = mRPrice;
+		this.PName = pName;
+	}
+	public float getAvailableQ() {
+		return AvailableQ;
+	}
+	public void setAvailableQ(float availableQ) {
+		AvailableQ = availableQ;
+	}
+	public float getMRPrice() {
+		return MRPrice;
+	}
+	public void setMRPrice(float mRPrice) {
+		MRPrice = mRPrice;
+	}
+	public String getPName() {
+		return PName;
+	}
+	public void setPName(String pName) {
+		PName = pName;
+	}
+	
+
+}

@@ -1,0 +1,10 @@
+package mini;
+import java.util.*;
+public class AdminDAO {
+	private List<GetSetAdmin> Admin;
+	public List Access(Float availableQ, Float mRPrice , String PName) {
+		Admin.add(new GetSetAdmin( availableQ, mRPrice,PName));
+		return Admin;
+	}
+
+}
