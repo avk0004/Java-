@@ -8,9 +8,12 @@ public class Main {
 
 		// 2️⃣ Pass AdminDAO object to MiniDAo
 		MiniDAo mini = new MiniDAo(ad);
+		
 
 		List<GetSetAdmin> result1 = ad.Available(250F, 10.15F, "Pro");
-		System.out.println("6 test case");
+		result1 = ad.Available(20F, 100.15F, "Pro1");
+
+		System.out.println("9 test case");
 		System.out.println("1 test case add");
 		System.out.println("2 test case show");
 		System.out.println("3 test case update");
@@ -18,7 +21,8 @@ public class Main {
 		System.out.println("5 test case clear");
 		System.out.println("6 test case search");
 		System.out.println("7 test case granttotal");
-		System.out.println("8 to exit");
+		System.out.println("8 to for admin");
+		System.out.println("9 to for exit");		
 		System.out.println("enter any one test case");
 
 		boolean f = true;
@@ -30,7 +34,6 @@ public class Main {
 				System.out.println("add is choosen");
 				System.out.println("Name");
 				String Name = sc.next();
-				System.out.println("price"+result1.indexOf(1));
 				System.out.println("quantity");
 				float q = sc.nextFloat();
 				mini.addProduct(Name, q);
@@ -41,13 +44,15 @@ public class Main {
 				break;
 			case 3:
 				System.out.println("update");
+				System.out.println("Product Name");
 				String Names =sc.next();
+				System.out.println("quantity changes");
 				float nquantity = sc.nextFloat();
 				mini.update(Names, nquantity);
 				break;
 			case 4:
-				System.out.println("update");
-				int m = sc.nextInt();
+				System.out.println("remove + product name");
+				String m = sc.next();
 				mini.remove(m);
 				break;
 			case 5:
@@ -56,6 +61,7 @@ public class Main {
 				break;
 			case 6:
 				System.out.println("Search is choosen");
+				System.out.println("product name to search");
 				String  m1 = sc.next();
 				mini.Search(m1);
 				break;
@@ -67,6 +73,9 @@ public class Main {
 				ad.RemainQ();
 				break;
 			case 9:
+				mini.Delete();
+				break;
+			case 10:
 				
 				f= false;
 				break;

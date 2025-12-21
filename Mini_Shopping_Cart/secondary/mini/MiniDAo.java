@@ -58,19 +58,18 @@ public class MiniDAo {
             }
         }
 
-        System.out.println("Item not found");
         return false;
     }
 
     // REMOVE ITEM
-    public boolean remove(int id) {
+    public boolean remove(String  id) {
 
         Iterator<GetSet> it = cart.iterator();
 
         while (it.hasNext()) {
             GetSet item = it.next();
 
-            if (item.getCount() == id) {
+            if (item.getProducts_Name() == id) {
 
                 for (GetSetAdmin a : admins) {
                     if (a.getPName().equalsIgnoreCase(item.getProducts_Name())) {
@@ -78,6 +77,7 @@ public class MiniDAo {
                         break;
                     }
                 }
+                System.out.println("Item  found and removed");
 
                 it.remove();
                 return true;
@@ -110,5 +110,8 @@ public class MiniDAo {
     }
     public void Delete() {
     	cart.clear();
+    	for (GetSet g : cart) {
+            System.out.println(g.getProducts_Name()+"p"+g.getPrice()+"q"+g.getQuantity());
+        }
     }
 }
