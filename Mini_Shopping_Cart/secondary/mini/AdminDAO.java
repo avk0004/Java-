@@ -1,29 +1,28 @@
 package mini;
 import java.util.*;
+
 public class AdminDAO {
-	List<GetSet> list = new ArrayList<>();
-	List<GetSetAdmin> Admin = new ArrayList<>();
-	MiniDAo mini;
-  
-	public List<GetSetAdmin> Available(Float availableQ, Float mRPrice , String PName) {
-		Admin.add(new GetSetAdmin( availableQ, mRPrice,PName));
-		return Admin;
-	}
-	public List<GetSetAdmin> getAdminList(){
-		return Admin;
-	}
-	public void AdminShow() {
-		for(GetSetAdmin admin:Admin) {
-			System.out.println("Product Name"+admin.PName+ "Available Quantity"+ admin.AvailableQ+
-					"Price"+admin.MRPrice);
-		}
-	}
-	public void RemainQ() {
-		 for (GetSetAdmin a : Admin) {
-			    System.out.println("Product name \t"+ a.getPName()+"Available\t"+a.getAvailableQ()+"\n");
-			}
 
-	}
-	
+    private List<GetSetAdmin> adminList = new ArrayList<>();
 
+    public AdminDAO() {
+        adminList.add(new GetSetAdmin("Apple", 100, 50));
+        adminList.add(new GetSetAdmin("Banana", 40, 100));
+        adminList.add(new GetSetAdmin("Milk", 60, 30));
+    }
+
+    public List<GetSetAdmin> getAdminList() {
+        return adminList;
+    }
+
+    public void RemainQ() {
+        System.out.println("---- STOCK ----");
+        for (GetSetAdmin a : adminList) {
+            System.out.println(
+                a.getPName() +
+                " Price:" + a.getMRPrice() +
+                " Qty:" + a.getAvailableQ()
+            );
+        }
+    }
 }
