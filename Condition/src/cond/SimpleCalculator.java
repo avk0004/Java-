@@ -7,50 +7,55 @@ public class SimpleCalculator {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter first number: ");
-        double num1 = sc.nextDouble();
-
-        System.out.print("Enter an operator (+, -, *, /, %): ");
-        char operator = sc.next().charAt(0);
-
-        System.out.print("Enter second number: ");
-        double num2 = sc.nextDouble();
+        double result = sc.nextDouble();
         boolean f = true;
-        double result;
-        while(f) {
-        switch(operator) {
-            case '+':
-                result = num1 + num2;
-                System.out.println("Result: " + result);
-                break;
-            case '-':
-                result = num1 - num2;
-                System.out.println("Result: " + result);
-                break;
-            case '*':
-                result = num1 * num2;
-                System.out.println("Result: " + result);
-                break;
-            case '/':
-                if(num2 != 0) {
-                    result = num1 / num2;
+        while (f) {
+            System.out.print("Enter operator (+, -, *, /, %) or any other key to exit: ");
+            char operator = sc.next().charAt(0);
+
+            System.out.print("Enter next number: ");
+            double num = sc.nextDouble();
+            
+            switch (operator) {
+                case '+':
+                    result += num;
                     System.out.println("Result: " + result);
-                } else {
-                    System.out.println("Error: Division by zero!");
-                }
-                break;
-            case '%':
-                if(num2 != 0) {
-                    result = num1 % num2;
+                    break;
+
+                case '-':
+                    result -= num;
                     System.out.println("Result: " + result);
-                } else {
-                    System.out.println("Error: Division by zero!");
-                }
-                break;
-            default:
-                System.out.println("Invalid Operator! Use +, -, *, /, %");
-                f= false;
-                break;
-        }
+                    break;
+
+                case '*':
+                    result *= num;
+                    System.out.println("Result: " + result);
+                    break;
+
+                case '/':
+                    if (num == 0) {
+                        System.out.println("Error: Division by zero!");
+                        break;
+                    }
+                    result /= num;
+                    System.out.println("Result: " + result);
+                    break;
+
+                case '%':
+                    if (num == 0) {
+                        System.out.println("Error: Division by zero!");
+                        break;
+                    }
+                    result %= num;
+                    System.out.println("Result: " + result);
+                    break;
+
+                default:
+                    System.out.println("Invalid operator. Calculator stopped.");
+                    sc.close();
+                    f = false;
+                    return;   // exits main → stops loop
+            }
         }
     }
 }
